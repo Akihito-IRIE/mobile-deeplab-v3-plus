@@ -132,7 +132,7 @@ def _convert_dataset(dataset_split):
 
 
 def main(unused_argv):
-  import pdb; pdb.set_trace()
+#   import pdb; pdb.set_trace()
   dataset_splits = tf.gfile.Glob(os.path.join(FLAGS.list_folder, '*.txt'))
   for dataset_split in dataset_splits:
     _convert_dataset(dataset_split)

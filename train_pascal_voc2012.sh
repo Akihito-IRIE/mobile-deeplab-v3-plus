@@ -20,7 +20,7 @@ WORK_DIR="${CURRENT_DIR}"
 # Go to datasets folder and download PASCAL VOC 2012 segmentation dataset.
 DATASET_DIR="datasets"
 cd "${WORK_DIR}/${DATASET_DIR}"
-#sh download_and_convert_voc2012.sh
+sh download_and_convert_voc2012.sh
 
 # Go back to original directory.
 cd "${CURRENT_DIR}"
@@ -39,8 +39,11 @@ python run.py --dataset_dir="${PASCAL_DATASET}"\
   --model_type="${MODEL_TYPE}" \
   --base_learning_rate=0.007 \
   --num_clones=1 \
-  --training_number_of_steps=40000 \
-  --pretrained_backbone_model_dir="${PRETRAINED_BACKBONE_MODEL_DIR}"
+  --training_number_of_steps=10 \
+  --pretrained_backbone_model_dir="${PRETRAINED_BACKBONE_MODEL_DIR}" \
+  --model_input_size=256 \
+  --model_input_size=256 \
+  --quant_friendly=True
 
 #  --pretrained_model_dir="${PRETRAINED_MODEL_DIR}" \
 #  --training_number_of_steps=10

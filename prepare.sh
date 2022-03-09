@@ -14,8 +14,13 @@ PRETRAINED_BACKBONE_MODEL_DIR='pretrained_backbone_model'
 TMP_MODEL_DIR='tmp'
 mkdir -p ${TMP_MODEL_DIR}
 
+cat > ${TMP_MODEL_DIR}/checkpoint << EOF
+model_checkpoint_path: "mobilenet_v2_1.0_224.ckpt"
+all_model_checkpoint_paths: "mobilenet_v2_1.0_224.ckpt"
+EOF
+
 MODEL_TAR_NAME='pretrained_mobilenet_v2_1.0_224.tar.gz'
-PRETRAINED_MODEL_PATH="http://cnbj1-fds.api.xiaomi.net/code/models/${MODEL_TAR_NAME}"
+PRETRAINED_MODEL_PATH="https://storage.googleapis.com/mobilenet_v2/checkpoints/mobilenet_v2_1.0_224.tgz"
 wget -q ${PRETRAINED_MODEL_PATH} -O ${TMP_MODEL_DIR}/${MODEL_TAR_NAME}
 
 cd ${TMP_MODEL_DIR}

@@ -34,15 +34,17 @@ def create_readable_names_for_imagenet_labels():
     """
 
     base_url = 'http://cnbj1-fds.api.xiaomi.net/ml-datasets/imagenet/'  # noqa
-    synset_url = '{}/imagenet_lsvrc_2015_synsets.txt'.format(base_url)
-    synset_to_human_url = '{}/imagenet_metadata.txt'.format(base_url)
+    # synset_url = '{}/imagenet_lsvrc_2015_synsets.txt'.format(base_url)
+    synset_url = 'https://raw.githubusercontent.com/tensorflow/models/master/research/slim/datasets/imagenet_lsvrc_2015_synsets.txt'
+    # synset_to_human_url = '{}/imagenet_metadata.txt'.format(base_url)
+    synset_to_human_url = 'https://raw.githubusercontent.com/tensorflow/models/master/research/slim/datasets/imagenet_metadata.txt'
 
-    filename, _ = urllib.urlretrieve(synset_url)
+    filename, _ = urllib.request.urlretrieve(synset_url)
     synset_list = [s.strip() for s in open(filename).readlines()]
     num_synsets_in_ilsvrc = len(synset_list)
     assert num_synsets_in_ilsvrc == 1000
 
-    filename, _ = urllib.urlretrieve(synset_to_human_url)
+    filename, _ = urllib.request.urlretrieve(synset_to_human_url)
     synset_to_human_list = open(filename).readlines()
     num_synsets_in_all_imagenet = len(synset_to_human_list)
     assert num_synsets_in_all_imagenet == 21842
@@ -98,9 +100,9 @@ def main(unused_argv):
                                   variables_map)
 
     # download panda sample image
-    #filename, _ = urllib.urlretrieve(
-    #    'https://upload.wikimedia.org/wikipedia/commons/f/fe/Giant_Panda_in_Beijing_Zoo_1.JPG')  # noqa
-    filename = '/home/work/liuqi/datasets/imagenet/validation/ILSVRC2012_val_00000001.JPEG'
+    filename, _ = urllib.request.urlretrieve(
+       'https://upload.wikimedia.org/wikipedia/commons/f/fe/Giant_Panda_in_Beijing_Zoo_1.JPG')  # noqa
+    #filename = '/home/work/liuqi/datasets/imagenet/validation/ILSVRC2012_val_00000001.JPEG'
 
     saver = tf.train.Saver()
 
